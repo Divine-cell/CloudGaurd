@@ -13,6 +13,26 @@ resource "aws_iam_role" "lambda_execution" {
       }
     ]
   })
+} 
+
+# IAM policy to allow Lambda to write logs to CloudWatch
+resource "aws_iam_role_policy" "lambda_logging_policy" {
+   name = "lambda_logging_policy"
+   role = aws_iam_role.lambda_execution.id
+   policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action = [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+          ]
+          Effect = "Allow"
+          Resource = "arn:aws:logs:*:*:*"
+        }
+      ]
+   })
 }
 
 # Attach the AWSLambdaBasicExecutionRole policy to the Lambda execution role
