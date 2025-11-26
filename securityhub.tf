@@ -1,11 +1,10 @@
 # Enable Security Hub
-resource "aws_securityhub_account" "securityhub_config" {
-  depends_on = [ aws_cloudtrail.cloudtrail, aws_guardduty_detector.guardduty_monitoring ]
-}
+resource "aws_securityhub_account" "securityhub_config" {}
 
-# Subscibe to CIS aws foundations benachmark
-# Tells security hhub to start evaluating resources against best practices 
-resource "aws_securityhub_standards_subscription" "cis" {
-  standards_arn = "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+
+# Tells security hub to start evaluating resources against best practices 
+resource "aws_securityhub_standards_subscription" "foundational" {
+   standards_arn = "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0"
   depends_on = [aws_securityhub_account.securityhub_config ]
 }
+

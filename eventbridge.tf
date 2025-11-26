@@ -1,11 +1,21 @@
 # CloudWatch Event Rule to trigger Lambda on Security Hub findings
 resource "aws_cloudwatch_event_rule" "securityhub_findings" {
-   name = "SecurityHubFindingsRule"
-   description = "Triggers lambda when security hub get an abnormal finding"
-   event_pattern = jsonencode({
-     "source": ["aws.securityhub"],
-     "detail-type": [ "Security Hub Findings - high"]
-   })
+  name = "SecurityHubFindingsRule"
+  description = "Triggers lambda when security hub get an abnormal finding"
+  event_pattern = jsonencode({
+    "source": ["aws.securityhub"],
+    "detail-type": ["Security Hub Findings - Imported"],
+    "detail": {
+      "findings": {
+        "ProductArn": [{
+          "prefix": "arn:aws:securityhub:us-east-1::product/aws/guardduty"
+        }],
+        "Severity": {
+          "Label": ["MEDIUM", "HIGH", "CRITICAL"]
+        }
+      }
+    }
+  }) 
 }
 
 # CloudWatch Event Target to link the rule to the Lambda function

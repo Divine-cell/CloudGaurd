@@ -48,6 +48,7 @@ resource "aws_lambda_function" "notify_slack" {
   runtime = "python3.12"
   handler = "lambda_function.lambda_handler"
   role = aws_iam_role.lambda_execution.arn
+  source_code_hash = filebase64sha256("lambda_function.zip")
   environment {
     variables = {
       SLACK_WEBHOOK_URL = var.slack_webhook_url
