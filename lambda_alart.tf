@@ -20,20 +20,33 @@ resource "aws_iam_role_policy" "lambda_logging_policy" {
    name = "lambda_logging_policy"
    role = aws_iam_role.lambda_execution.id
    policy = jsonencode({
-      Version = "2012-10-17"
+      Version = "2012-10-17",
       Statement = [
         {
           Action = [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
             "logs:PutLogEvents"
-          ]
-          Effect = "Allow"
+          ],
+          Effect = "Allow",
           Resource = "arn:aws:logs:*:*:*"
+        },
+        {
+          Effect = "Allow",
+          Action = [
+            "dynamodb:PutItem",
+            "dynamodb:GetItem",
+            "dynamodb:UpdateItem"
+          ],
+          Resource = [
+            aws_dynamodb_table.finding_id_table.arn,
+            "${aws_dynamodb_table.finding_id_table.arn}/*"
+          ]
         }
       ]
    })
 }
+
 
 # Attach the AWSLambdaBasicExecutionRole policy to the Lambda execution role
 resource "aws_iam_role_policy_attachment" "lambda_logging" {
@@ -52,6 +65,8 @@ resource "aws_lambda_function" "notify_slack" {
   environment {
     variables = {
       SLACK_WEBHOOK_URL = var.slack_webhook_url
+      DDB_TABLE = aws_dynamodb_table.finding_id_table.name
+      DDB_TTL_MINUTES=120
     }
   }
 }
