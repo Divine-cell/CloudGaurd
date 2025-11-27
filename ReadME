@@ -1,7 +1,6 @@
-# CloudGuard – Cloud Security Threat Detection and Alert Infrasturcture
+# CloudGuard  Cloud Security Threat Detection and Alert Infrasturcture
 
 **CloudGuard** is a cloud security architecture using Terraform to design, monitor cloud environments, detect threats, and send real-time alerts to a team via Slack. 
-
 
 ## Solution Overview
 CloudGuard provides a fully automated workflow to detect and alert team on cloud security threats in when it happens.  
