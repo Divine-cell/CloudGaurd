@@ -6,7 +6,7 @@
 CloudGuard provides a fully automated workflow to detect and alert team on cloud security threats in when it happens.  
 
 **Workflow:**
-1. Fpr this project, EC2 instances simulate threats using Bash scripts.
+1. For this project, EC2 instances simulate threats using Bash scripts.
 2. **GuardDuty** detects threats and sends findings to **Security Hub**.
 3. **EventBridge** imports findings and triggers a **Lambda** function.
 4. Lambda checks **DynamoDB** for existing finding IDs.
@@ -17,8 +17,7 @@ CloudGuard provides a fully automated workflow to detect and alert team on cloud
 
 
 ## Architecture Diagram
-The architecture is designed to leverage AWS managed services for scalable and automated threat detection and notification. 
-
+<img width="861" height="664" alt="Screenshot 2025-11-28 014342" src="https://github.com/user-attachments/assets/cba34007-2b98-4359-9bc9-bfaf3b4eee30" />
 
 ## AWS Services Used
 CloudTrail: To provide an audit trail and source for threat detection           
