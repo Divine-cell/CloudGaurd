@@ -1,3 +1,26 @@
+## CloudGuard  Cloud Security Threat Detection and Alert Infrasturcture
+
+The primary goal was to improve the 3-tier web app I had previously built by introducing automation, scalability, and a serverless architecture. 
+
+**check out the initial infrastructure:** https://github.com/Divine-cell/FinBloom
+
+The entire infrastructure is provisioned, managed, and maintained solely through Terraform configuration files.
+
+<img width="1325" height="646" alt="Screenshot 2025-10-20 024300" src="https://github.com/user-attachments/assets/27b7e508-f5ac-4508-a1b8-e3598b85a5d7" />
+
+
+## Architectural Diagram
+
+The application follows a standard serverless 3-Tier model, ensuring high availability (across 2 Availability Zones), security, and fast content delivery.
+<img width="1114" height="778" alt="finbloom" src="https://github.com/user-attachments/assets/cb5dfad3-733e-43bd-bba2-81deb1bba8ad" />
+
+## Architecture Breakdown
+
+
+
+
+
+
 # CloudGuard  Cloud Security Threat Detection and Alert Infrasturcture
 
 **CloudGuard** is a cloud security architecture using Terraform to design, monitor cloud environments, detect threats, and send real-time alerts to a team via Slack. 
